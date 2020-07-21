@@ -21,6 +21,9 @@ pipeline {
     stage('Approval for Master') {
       steps {
         echo 'is it ok?'
+        sh '''git checkout master
+git merge dev1
+git checkout dev1'''
       }
     }
 
