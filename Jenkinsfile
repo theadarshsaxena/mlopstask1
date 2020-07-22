@@ -20,13 +20,13 @@ pipeline {
 
     stage('Deployment to production system') {
       input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "adarsh"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                           }
-       }
+        message 'Should we continue?'
+        id 'Yes, we should.'
+        submitter 'adarsh'
+        parameters {
+          string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        }
+      }
       steps {
         echo "Called by: ${params.name}"
         sh 'echo "deployment to production system started"'
