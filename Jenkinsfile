@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('Deploying DevEnv') {
           steps {
-            build 'Job1'
+            build 'job1'
           }
         }
 
@@ -21,26 +21,18 @@ pipeline {
     stage('Approval for Master') {
       steps {
         echo 'is it ok?'
-        sh '''git checkout master
-git merge dev1
-git checkout dev1'''
       }
     }
 
     stage('Deploying in production') {
-      parallel {
-        stage('Deploying in production') {
-          steps {
-            build 'job2'
-          }
-        }
+      steps {
+        build 'job2'
+      }
+    }
 
-        stage('Sucess') {
-          steps {
-            echo 'Successfully deployed in the production environment'
-          }
-        }
-
+    stage('Message') {
+      steps {
+        echo 'successfully deployed everything to the production environment'
       }
     }
 
